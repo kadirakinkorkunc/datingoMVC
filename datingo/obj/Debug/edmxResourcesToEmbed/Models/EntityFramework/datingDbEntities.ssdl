@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="datingDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="commentChild">
+    <Key>
+      <PropertyRef Name="childCommentId" />
+    </Key>
+    <Property Name="childCommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="childComment" Type="nvarchar" MaxLength="2000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="commentParent">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="2000" Nullable="false" />
+    <Property Name="childCommentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userAcc">
+    <Key>
+      <PropertyRef Name="userName" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="userPw" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="userMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userGender" Type="bit" />
+    <Property Name="userAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="userSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="userBoy" Type="int" />
+    <Property Name="userKilo" Type="int" />
+    <Property Name="userHair" Type="nvarchar" MaxLength="50" />
+    <Property Name="userEye" Type="nvarchar" MaxLength="50" />
+    <Property Name="userCountry" Type="nvarchar" MaxLength="50" />
+    <Property Name="userFavTeam" Type="nvarchar" MaxLength="50" />
+    <Property Name="userBurc" Type="nvarchar" MaxLength="50" />
+    <Property Name="userFavMusic" Type="nvarchar" MaxLength="50" />
+    <Property Name="userFavFilm" Type="nvarchar" MaxLength="50" />
+    <Property Name="userMeslek" Type="nvarchar" MaxLength="50" />
+    <Property Name="userEgitim" Type="nvarchar" MaxLength="50" />
+    <Property Name="userPhoto" Type="image" />
+    <Property Name="userBirthday" Type="date" />
+  </EntityType>
+  <Association Name="FK_commentParent_commentChild">
+    <End Role="commentChild" Type="Self.commentChild" Multiplicity="1" />
+    <End Role="commentParent" Type="Self.commentParent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="commentChild">
+        <PropertyRef Name="childCommentId" />
+      </Principal>
+      <Dependent Role="commentParent">
+        <PropertyRef Name="commentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userAcc_commentParent">
+    <End Role="commentParent" Type="Self.commentParent" Multiplicity="1" />
+    <End Role="userAcc" Type="Self.userAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="commentParent">
+        <PropertyRef Name="commentId" />
+      </Principal>
+      <Dependent Role="userAcc">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="datingDbModelStoreContainer">
+    <EntitySet Name="commentChild" EntityType="Self.commentChild" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="commentParent" EntityType="Self.commentParent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userAcc" EntityType="Self.userAcc" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_commentParent_commentChild" Association="Self.FK_commentParent_commentChild">
+      <End Role="commentChild" EntitySet="commentChild" />
+      <End Role="commentParent" EntitySet="commentParent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userAcc_commentParent" Association="Self.FK_userAcc_commentParent">
+      <End Role="commentParent" EntitySet="commentParent" />
+      <End Role="userAcc" EntitySet="userAcc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

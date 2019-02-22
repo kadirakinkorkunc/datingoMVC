@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="datingDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="userAcc">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="userPw" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="userMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userGender" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userAcc2">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="userAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userBoy" Type="int" />
+    <Property Name="userKilo" Type="int" />
+    <Property Name="userHair" Type="nvarchar" MaxLength="10" />
+    <Property Name="userEye" Type="nvarchar" MaxLength="10" />
+    <Property Name="userCountry" Type="nvarchar" MaxLength="30" />
+    <Property Name="userFavTeam" Type="nvarchar" MaxLength="20" />
+    <Property Name="userBurc" Type="nvarchar" MaxLength="10" />
+    <Property Name="userFavMusic" Type="nvarchar" MaxLength="20" />
+    <Property Name="userFavFilm" Type="nvarchar" MaxLength="20" />
+    <Property Name="userMeslek" Type="nvarchar" MaxLength="20" />
+    <Property Name="userEgitim" Type="nvarchar" MaxLength="20" />
+    <Property Name="userPhoto" Type="image" />
+  </EntityType>
+  <Association Name="FK_userAcc2_userAcc">
+    <End Role="userAcc" Type="Self.userAcc" Multiplicity="1" />
+    <End Role="userAcc2" Type="Self.userAcc2" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="userAcc">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="userAcc2">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="datingDbModelStoreContainer">
+    <EntitySet Name="userAcc" EntityType="Self.userAcc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userAcc2" EntityType="Self.userAcc2" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_userAcc2_userAcc" Association="Self.FK_userAcc2_userAcc">
+      <End Role="userAcc" EntitySet="userAcc" />
+      <End Role="userAcc2" EntitySet="userAcc2" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

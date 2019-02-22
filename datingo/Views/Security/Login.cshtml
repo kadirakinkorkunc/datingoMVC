@@ -1,0 +1,56 @@
+﻿@using System.Web.Optimization
+@model datingo.Models.EntityFramework.userAcc
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<!DOCTYPE html>
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Content/css")
+    <link href="~/Content/logincss/login.css" rel="stylesheet" />
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="https://i.ibb.co/0sdjdsJ/logo1.png" id="icon" alt="logo 1" border="0">
+
+            </div>
+            <!-- Login Form -->
+           
+                <span style="color:orangered"> @ViewBag.Mesaj</span>
+                @using (Html.BeginForm("Login", "Security", FormMethod.Post))
+                {
+                    @Html.TextBoxFor(m => m.userName, new { @class = "fadeIn second", placeholder = "username" })
+                    @Html.TextBoxFor(m => m.userPw, new { @class = "fadeIn third", placeholder = "password" })
+                    <input type="submit" class="fadeIn fourth" value="Log In">
+                }
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="/Home/Index">Go to the Site</a>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+    </div>
+
+</body>

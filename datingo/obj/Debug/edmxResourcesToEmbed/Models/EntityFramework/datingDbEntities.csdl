@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="datingDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="datingDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="commentChild" EntityType="datingDbModel.commentChild" />
+    <EntitySet Name="commentParent" EntityType="datingDbModel.commentParent" />
+    <EntitySet Name="userAcc" EntityType="datingDbModel.userAcc" />
+    <AssociationSet Name="FK_commentParent_commentChild" Association="datingDbModel.FK_commentParent_commentChild">
+      <End Role="commentChild" EntitySet="commentChild" />
+      <End Role="commentParent" EntitySet="commentParent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userAcc_commentParent" Association="datingDbModel.FK_userAcc_commentParent">
+      <End Role="commentParent" EntitySet="commentParent" />
+      <End Role="userAcc" EntitySet="userAcc" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="commentChild">
+    <Key>
+      <PropertyRef Name="childCommentId" />
+    </Key>
+    <Property Name="childCommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="childComment" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="commentParent" Relationship="datingDbModel.FK_commentParent_commentChild" FromRole="commentChild" ToRole="commentParent" />
+  </EntityType>
+  <EntityType Name="commentParent">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comment" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="childCommentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="commentChild" Relationship="datingDbModel.FK_commentParent_commentChild" FromRole="commentParent" ToRole="commentChild" />
+    <NavigationProperty Name="userAcc" Relationship="datingDbModel.FK_userAcc_commentParent" FromRole="commentParent" ToRole="userAcc" />
+  </EntityType>
+  <EntityType Name="userAcc">
+    <Key>
+      <PropertyRef Name="userName" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userPw" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userMail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userGender" Type="Boolean" />
+    <Property Name="userAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userBoy" Type="Int32" />
+    <Property Name="userKilo" Type="Int32" />
+    <Property Name="userHair" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userEye" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userBurc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavMusic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavFilm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userMeslek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userEgitim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="userBirthday" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="commentParent" Relationship="datingDbModel.FK_userAcc_commentParent" FromRole="userAcc" ToRole="commentParent" />
+  </EntityType>
+  <Association Name="FK_commentParent_commentChild">
+    <End Type="datingDbModel.commentChild" Role="commentChild" Multiplicity="0..1" />
+    <End Type="datingDbModel.commentParent" Role="commentParent" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="commentChild">
+        <PropertyRef Name="childCommentId" />
+      </Principal>
+      <Dependent Role="commentParent">
+        <PropertyRef Name="commentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userAcc_commentParent">
+    <End Type="datingDbModel.commentParent" Role="commentParent" Multiplicity="0..1" />
+    <End Type="datingDbModel.userAcc" Role="userAcc" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="commentParent">
+        <PropertyRef Name="commentId" />
+      </Principal>
+      <Dependent Role="userAcc">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

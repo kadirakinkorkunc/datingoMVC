@@ -1,0 +1,151 @@
+﻿@using System.Web.Optimization
+@model datingo.Models.EntityFramework.userAcc
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<br />
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Content/css")
+    <script src="~/Scripts/profilejs/profilejs.js"></script>
+</head>
+<body>
+    @*@Html.AntiForgeryToken()*@
+    <hr>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-sm-10"><h1>My Profile</h1></div>
+        </div>
+        <div class="row">
+            @*<div class="col-sm-3">
+                <div class="text-center">
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <input type="file" class="text-center center-block file-upload">
+                </div><br>*@
+        </div><!--/col-3-->
+
+        <div class="col-sm-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <hr>
+                    @using (Html.BeginForm("ProfilGuncelle", "Profile", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First Name</h4></label>
+                                @Html.TextBoxFor(m => m.userAd, new { @class = "form-control", placeholder = "First name" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                @Html.TextBoxFor(m => m.userSoyad, new { @class = "form-control", placeholder = "Last name" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Height</h4></label>
+                                @Html.TextBoxFor(m => m.userBoy, new { @class = "form-control", placeholder = "height(cm)" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile"><h4>Weight</h4></label>
+                                @Html.TextBoxFor(m => m.userKilo, new { @class = "form-control", placeholder = "weight(kg)" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Hair Color</h4></label>
+                                @Html.TextBoxFor(m => m.userHair, new { @class = "form-control", placeholder = "hair color" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Eye Color</h4></label>
+                                @Html.TextBoxFor(m => m.userEye, new { @class = "form-control", placeholder = "eye color" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Location</h4></label>
+                                @Html.TextBoxFor(m => m.userCountry, new { @class = "form-control", placeholder = "location" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Favourite Team</h4></label>
+                                @Html.TextBoxFor(m => m.userFavTeam, new { @class = "form-control", placeholder = "fav team" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Favourite Film Category</h4></label>
+                                @Html.TextBoxFor(m => m.userFavFilm, new { @class = "form-control", placeholder = "fav film category" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Job</h4></label>
+                                @Html.TextBoxFor(m => m.userMeslek, new { @class = "form-control", placeholder = "what are you doing for living?" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Educational Status</h4></label>
+                                @Html.TextBoxFor(m => m.userEgitim, new { @class = "form-control", placeholder = "ed. status" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Password</h4></label>
+                                @Html.TextBoxFor(m => m.userPw, new { @class = "form-control", placeholder = "new password if you want to change" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Mail Adress</h4></label>
+                                @Html.TextBoxFor(m => m.userMail, new { @class = "form-control", placeholder = "new mail adress if you want to change" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Birthdate</h4></label>
+                                @Html.TextBoxFor(m => m.userBirthday,"{0:yyyy-MM-dd}",new { @class = "form-control",type="date" })
+                            </div>
+                        </div>
+
+
+                        @Html.HiddenFor(m => m.userId)
+                        @Html.HiddenFor(m => m.userName)
+
+                        <div class="form-group">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+
+                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+
+                            </div>
+                        </div>
+                    }
+
+
+                </div><!--/tab-pane-->
+            </div><!--/tab-pane-->
+        </div><!--/tab-content-->
+    </div><!--/col-9-->
+    @*</div>*@<!--/row-->
+</body>

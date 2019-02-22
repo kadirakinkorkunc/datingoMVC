@@ -1,0 +1,37 @@
+﻿@*@model datingo.Models.EntityFramework.userAcc*@
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Content/business-frontpage.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navigation -->
+    @Html.Partial("_Header")
+    <!-- Navigation -->
+
+    <div >
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    
+    @Html.Partial("_Footer")
+    
+    <!-- Footer -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+</body>
+</html>

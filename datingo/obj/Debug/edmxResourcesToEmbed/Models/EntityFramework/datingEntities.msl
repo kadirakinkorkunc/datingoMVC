@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="datingDbModelStoreContainer" CdmEntityContainer="datingDbEntities">
+    <EntitySetMapping Name="commentParent">
+      <EntityTypeMapping TypeName="datingDbModel.commentParent">
+        <MappingFragment StoreEntitySet="commentParent">
+          <ScalarProperty Name="commentId" ColumnName="commentId" />
+          <ScalarProperty Name="parentProfile" ColumnName="parentProfile" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="commentOwner" ColumnName="commentOwner" />
+          <ScalarProperty Name="commentDate" ColumnName="commentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userAcc">
+      <EntityTypeMapping TypeName="datingDbModel.userAcc">
+        <MappingFragment StoreEntitySet="userAcc">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userPw" ColumnName="userPw" />
+          <ScalarProperty Name="userMail" ColumnName="userMail" />
+          <ScalarProperty Name="userGender" ColumnName="userGender" />
+          <ScalarProperty Name="userAd" ColumnName="userAd" />
+          <ScalarProperty Name="userSoyad" ColumnName="userSoyad" />
+          <ScalarProperty Name="userBoy" ColumnName="userBoy" />
+          <ScalarProperty Name="userKilo" ColumnName="userKilo" />
+          <ScalarProperty Name="userHair" ColumnName="userHair" />
+          <ScalarProperty Name="userEye" ColumnName="userEye" />
+          <ScalarProperty Name="userCountry" ColumnName="userCountry" />
+          <ScalarProperty Name="userFavTeam" ColumnName="userFavTeam" />
+          <ScalarProperty Name="userBurc" ColumnName="userBurc" />
+          <ScalarProperty Name="userFavMusic" ColumnName="userFavMusic" />
+          <ScalarProperty Name="userFavFilm" ColumnName="userFavFilm" />
+          <ScalarProperty Name="userMeslek" ColumnName="userMeslek" />
+          <ScalarProperty Name="userEgitim" ColumnName="userEgitim" />
+          <ScalarProperty Name="userPhoto" ColumnName="userPhoto" />
+          <ScalarProperty Name="userBirthday" ColumnName="userBirthday" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

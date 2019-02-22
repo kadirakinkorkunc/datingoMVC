@@ -1,0 +1,97 @@
+﻿@using System.Web.Optimization;
+@{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<!-- Header with Background Image -->
+<header class="">
+    <div class="img-fluid">
+        @*<img class="img-responsive" src="https://i.ibb.co/GQCXR1S/logo2.png" alt="logo2" border="0" height="400" width="1920">*@
+        <img  src="http://i68.tinypic.com/34px8i8.jpg" border="0" alt="mainlogo" height="400 " width="1920">
+    </div>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="mt-4">JOIN US FOR FREE!</h2>
+            <p>
+                <h5>Why Choose DatinGO?</h5>
+                DatinGO is a popular foreign dating and personals site helping 1000s of singles find their prospective long-term partner. If you’re interested in international dating, you’ve come to the right place - we connect thousands of single men and women internationally.
+            </p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/Security/Register">Call to Action &raquo;</a>
+            </p>
+        </div>
+        
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-sm-4 my-4">
+            <div class="card">
+                <img class="card-img-top" src="http://i64.tinypic.com/sawglc.jpg" border="0" alt="couple">
+                <div class="card-body">
+                    <h4 class="card-title">Fun</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+                </div>
+                <div class="card-footer">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <a href="/Home/FindMatch" class="btn btn-primary">Find Out More!</a>
+                    }
+                    else
+                    {
+                        <a href="/Security/Register" class="btn btn-primary">Find Out More!</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 my-4">
+            <div class="card">
+                <img class="card-img-top" src="http://i66.tinypic.com/rrmg68.jpg" border="0" alt="couple2"></a>
+                <div class="card-body">
+                    <h4 class="card-title">Romantic</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
+                </div>
+                <div class="card-footer">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <a href="/Home/FindMatch" class="btn btn-primary">Find Out More!</a>
+                    }
+                    else
+                    {
+                        <a href="/Security/Register" class="btn btn-primary">Find Out More!</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 my-4">
+            <div class="card">
+                <img class="card-img-top" src="http://i63.tinypic.com/30k7x1y.jpg" border="0" alt="couple3">
+                <div class="card-body">
+                    <h4 class="card-title">Harmony</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+                </div>
+                <div class="card-footer">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <a href="/Home/FindMatch" class="btn btn-primary">Find Out More!</a>
+                    }
+                    else
+                    {
+                        <a href="/Security/Register" class="btn btn-primary">Find Out More!</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

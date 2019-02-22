@@ -1,0 +1,69 @@
+﻿@using System.Web.Optimization
+@{
+    ViewBag.Title = "Faq";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/Content/faqcss/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="~/Content/faqcss/style.css"> <!-- Resource style -->
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Content/css")*@
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <header>
+        <h1>Frequently Asked Questions</h1>
+    </header>
+    <section class="cd-faq">
+        <div class="cd-faq-items">
+            <ul id="basics" class="cd-faq-group">
+
+                <li>
+                    <a class="cd-faq-trigger" href="#0">Is account required?</a>
+                    <div class="cd-faq-content">
+                        <p>Account registration is required for having more effective experience</p>
+                    </div> <!-- cd-faq-content -->
+                </li>
+                <li>
+                    <a class="cd-faq-trigger" href="#0">Do I have privacy for my personal informations?</a>
+                    <div class="cd-faq-content">
+                        <p>Your informations is only sharing with other members except your account detail(password etc.)</p>
+                    </div> <!-- cd-faq-content -->
+                </li>
+                <li>
+                    <a class="cd-faq-trigger" href="#0">What is the FIND MATCH?</a>
+                    <div class="cd-faq-content">
+                        <p>Any registered user can use this property for matching healthly."FIND MATCH" is using a matching algorithm for more effective results.</p>
+                    </div> <!-- cd-faq-content -->
+                </li>
+                <li>
+                    <a class="cd-faq-trigger" href="#0">Do I have pay anything for using this service?</a>
+                    <div class="cd-faq-content">
+                        <p>You dont need to pay anything for using this website.It is totally free.</p>
+                    </div> <!-- cd-faq-content -->
+                </li>
+
+            </ul> <!-- cd-faq-group -->
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+        </div> <!-- cd-faq-items -->
+        <a href="#0" class="cd-close-panel">Close</a>
+    </section> <!-- cd-faq -->
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+      <script src="~/Scripts/faqjs/jquery.mobile.custom.min.js"></script>
+      <script src="~/Scripts/faqjs/main.js"></script>
+</body>
+</html>

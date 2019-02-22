@@ -1,0 +1,198 @@
+﻿@using System.Web.Optimization
+@model datingo.Models.EntityFramework.userAcc
+
+
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<!DOCTYPE html>
+<br />
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Content/css")
+    <link href="~/Content/profilecss/profile.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div class="container emp-profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    @if (Model.userPhoto == null)
+                    {
+                        <img src="https://i.ibb.co/9bPy1rZ/msn-logo.png" alt="msn-logo" border="0">
+                    }
+                    else
+                    {
+                        @Model.userPhoto
+                    }
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h4>
+                        @Model.userAd @Model.userSoyad
+                    </h4>
+                    <h6>
+                        @Model.userMeslek
+                    </h6>
+                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Comment/Index/@Model.userName" aria-controls="profile" aria-selected="false">Reputation Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                @if (User.Identity.Name == Model.userName)
+                {
+                    <a href="/Profile/ProfilGuncelle/@User.Identity.Name"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" /> </a>
+                }
+                else
+                {
+
+                }
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>BIYOGRAFI</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Nickname</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.userName</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Sex</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.userGender</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.userMail</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Height</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userBoy != null ? Model.userBoy.ToString() : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Weight</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userKilo != null ? Model.userKilo.ToString() : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Hair Color</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userHair != null ? Model.userHair : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Eye Color</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userEye != null ? Model.userEye : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Location</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userCountry != null ? Model.userCountry : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Favourite Team</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userFavTeam != null ? Model.userFavTeam : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Favourite Music Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userFavMusic != null ? Model.userFavMusic : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Favourite Film Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userFavTeam != null ? Model.userFavTeam : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Job</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userMeslek != null ? Model.userMeslek : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Education Status</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userEgitim != null ? Model.userEgitim : "Unknown")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Birthday</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@(Model.userBirthday != null ? Model.userBirthday.Value.ToString("dd-MM-yyyy") : "Unknown")</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        @*@Html.Partial("CommentSection")*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

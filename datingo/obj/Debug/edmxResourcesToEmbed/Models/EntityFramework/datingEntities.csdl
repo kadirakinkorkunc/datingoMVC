@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="datingDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="commentParent">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="parentProfile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="comment" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="commentOwner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="userAcc" Relationship="Self.FK_commentParent_userAcc" FromRole="commentParent" ToRole="userAcc" />
+  </EntityType>
+  <EntityType Name="userAcc">
+    <Key>
+      <PropertyRef Name="userName" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPw" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userBoy" Type="Int32" />
+    <Property Name="userKilo" Type="Int32" />
+    <Property Name="userHair" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userEye" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userBurc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavMusic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavFilm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userMeslek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userEgitim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="userBirthday" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="commentParent" Relationship="Self.FK_commentParent_userAcc" FromRole="userAcc" ToRole="commentParent" />
+  </EntityType>
+  <Association Name="FK_commentParent_userAcc">
+    <End Role="userAcc" Type="Self.userAcc" Multiplicity="1" />
+    <End Role="commentParent" Type="Self.commentParent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userAcc">
+        <PropertyRef Name="userName" />
+      </Principal>
+      <Dependent Role="commentParent">
+        <PropertyRef Name="parentProfile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="datingDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="commentParent" EntityType="Self.commentParent" />
+    <EntitySet Name="userAcc" EntityType="Self.userAcc" />
+    <AssociationSet Name="FK_commentParent_userAcc" Association="Self.FK_commentParent_userAcc">
+      <End Role="userAcc" EntitySet="userAcc" />
+      <End Role="commentParent" EntitySet="commentParent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

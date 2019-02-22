@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="datingDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="datingDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="userAcc" EntityType="datingDbModel.userAcc" />
+    <EntitySet Name="userAcc2" EntityType="datingDbModel.userAcc2" />
+    <AssociationSet Name="FK_userAcc2_userAcc" Association="datingDbModel.FK_userAcc2_userAcc">
+      <End Role="userAcc" EntitySet="userAcc" />
+      <End Role="userAcc2" EntitySet="userAcc2" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="userAcc">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userPw" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userMail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userGender" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="userAcc2" Relationship="datingDbModel.FK_userAcc2_userAcc" FromRole="userAcc" ToRole="userAcc2" />
+  </EntityType>
+  <EntityType Name="userAcc2">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="userAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userBoy" Type="Int32" />
+    <Property Name="userKilo" Type="Int32" />
+    <Property Name="userHair" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userEye" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userCountry" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="userFavTeam" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userBurc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userFavMusic" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userFavFilm" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userMeslek" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userEgitim" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="userAcc" Relationship="datingDbModel.FK_userAcc2_userAcc" FromRole="userAcc2" ToRole="userAcc" />
+  </EntityType>
+  <Association Name="FK_userAcc2_userAcc">
+    <End Type="datingDbModel.userAcc" Role="userAcc" Multiplicity="1" />
+    <End Type="datingDbModel.userAcc2" Role="userAcc2" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="userAcc">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="userAcc2">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

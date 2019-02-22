@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="datingDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="commentTable">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="2000" Nullable="false" />
+    <Property Name="commentSahibi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="commentDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userAcc">
+    <Key>
+      <PropertyRef Name="userName" />
+    </Key>
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="userPw" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="userMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userGender" Type="bit" />
+    <Property Name="userAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="userSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="userBoy" Type="int" />
+    <Property Name="userKilo" Type="int" />
+    <Property Name="userHair" Type="nvarchar" MaxLength="50" />
+    <Property Name="userEye" Type="nvarchar" MaxLength="50" />
+    <Property Name="userCountry" Type="nvarchar" MaxLength="50" />
+    <Property Name="userFavTeam" Type="nvarchar" MaxLength="50" />
+    <Property Name="userBurc" Type="nvarchar" MaxLength="50" />
+    <Property Name="userFavMusic" Type="nvarchar" MaxLength="50" />
+    <Property Name="userFavFilm" Type="nvarchar" MaxLength="50" />
+    <Property Name="userMeslek" Type="nvarchar" MaxLength="50" />
+    <Property Name="userEgitim" Type="nvarchar" MaxLength="50" />
+    <Property Name="userPhoto" Type="image" />
+    <Property Name="userBirthday" Type="date" />
+    <Property Name="commentParentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="datingDbModelStoreContainer">
+    <EntitySet Name="commentTable" EntityType="Self.commentTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userAcc" EntityType="Self.userAcc" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

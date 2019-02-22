@@ -1,0 +1,163 @@
+﻿
+@using System.Web.Optimization
+
+@model datingo.Models.EntityFramework.userAcc
+
+@{
+    ViewBag.Title = "Chat";
+}
+<h2 style="text-align:center;">Online Chat</h2>
+<!DOCTYPE html>
+<html>
+
+<head>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Content/css")
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/chatcss/chat.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Content/business-frontpage.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/Home/FindMatch">Find MATCH!</a>
+                <a class="navbar-brand" href="/Home/Chat">Online Chat</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Home/Index">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Hakkımızda">About US</a>
+                        </li>
+                        @* CHECK FOR AUTHENTICATION*@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Profile/Index/@User.Identity.Name">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Security/Logout">Logout</a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Security/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Security/Register">Register</a>
+                            </li>
+                        }
+                        @* END OF THE CHECK FOR AUTHENTICATION*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <chat>
+        <div class="container">
+
+            <div class="row">
+
+
+                <div class="message-wrap col-lg-8">
+                    <div class="msg-wrap">
+
+                        <div class="media msg ">
+                            <a class="pull-left" href="#">
+                            </a>
+                            <div class="media-body">
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i>  @DateTime.Now.ToString("dd.MM.yyyy tt hh:mm")</small>
+                                <h5 class="media-heading" id="displayname"></h5>
+                                <small class="col-lg-10" id="discussion">
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="send-wrap ">
+                        <textarea class="form-control send-message" id="message" cols="267" rows="5" placeholder="Write a reply..."></textarea>
+
+                    </div>
+                    <div class="btn-panel">
+
+                        <button id="sendmessage" value="Send" class=" col-lg-4 text-right btn   send-message-btn pull-right"><i class="fa fa-plus"> </i> Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </chat>
+
+    <footer class="fixed-bottom">
+        <div class="py-5 bg-dark">
+            <p class="m-0 text-center text-white">Copyright &copy; designed by K&B&E</p>
+        </div>
+    </footer>
+
+
+    <javascript>
+        <!--Script references. -->
+        <!--Reference the jQuery library. -->
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <!--Reference the SignalR library. -->
+        <script src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
+        <!--Reference the autogenerated SignalR hub script. -->
+        <script src="~/signalr/hubs/"></script>
+        <!--Add script to update the page and send messages.-->
+        <script type="text/javascript">
+        $(function () {
+            // Declare a proxy to reference the hub.
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call to broadcast messages.
+            chat.client.broadcastMessage = function (name, message) {
+                // Html encode display name and message.
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+                // Add the message to the page.
+                $('#discussion').append('<li><strong>' + encodedName
+                    + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+            };
+        // Get the user name and store it to prepend to messages.
+        $('#displayname').val("@Model.userName.ToString()");
+        // Set initial focus to message input box.
+        $('#message').focus();
+        // Start the connection.
+        $.connection.hub.start().done(function () {
+            $('#sendmessage').click(function () {
+                // Call the Send method on the hub.
+                chat.server.send( $('#displayname').val(), $('#message').val());
+                // Clear text box and reset focus for next comment.
+                $('#message').val('').focus();
+            });
+        });
+    });
+        </script>
+    </javascript>
+
+
+
+
+</body>
+
+</html>

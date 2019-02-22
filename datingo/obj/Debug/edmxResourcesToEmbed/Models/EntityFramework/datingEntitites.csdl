@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="datingDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="commentTable">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comment" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="commentSahibi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="userAcc">
+    <Key>
+      <PropertyRef Name="userName" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPw" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userGender" Type="Boolean" />
+    <Property Name="userAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userBoy" Type="Int32" />
+    <Property Name="userKilo" Type="Int32" />
+    <Property Name="userHair" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userEye" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavTeam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userBurc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavMusic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userFavFilm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userMeslek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userEgitim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="userBirthday" Type="DateTime" Precision="0" />
+    <Property Name="commentParentId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="datingDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="commentTable" EntityType="Self.commentTable" />
+    <EntitySet Name="userAcc" EntityType="Self.userAcc" />
+  </EntityContainer>
+</Schema>

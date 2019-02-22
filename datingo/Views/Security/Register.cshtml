@@ -1,0 +1,83 @@
+﻿
+
+ @*CONFIRM PASSWORD CALISMIYOR*@
+
+
+
+@using System.Web.Optimization
+@model datingo.Models.EntityFramework.userAcc
+@{
+    ViewBag.Title = "Register for FREE!";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/registercss/register.css" rel="stylesheet" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
+</head>
+<body>
+    <!-- main -->
+    <div class="main-w3layouts wrapper"><br />
+        <h1>Register for FREE!</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+
+                <span style="color:orangered">@ViewBag.AlreadyExists</span>
+                @using (Html.BeginForm("Register", "Security", FormMethod.Post))
+                {
+                    @Html.TextBoxFor(m => m.userName, new { @class = "text", placeholder = "pick a username", required = "" })
+                    @Html.TextBoxFor(m => m.userMail, new { @class = "text email", placeholder = "e-mail adress", required = "" })
+                    @Html.TextBoxFor(m => m.userPw, new { @class = "text", placeholder = "choose a password", required = "" })
+                    @Html.TextBoxFor(m => m.userPw, new { @class = "text w3lpass", placeholder = "password again...", required = "" })
+                    <select class="form-row" id="userGender" name="userGender" required="">
+                        <option>Select your gender</option>
+                        <option>Man</option>
+                        <option>Woman</option>
+                    </select>
+
+                    <hr />
+                    <div class="wthree-text">
+                        <label class="anim">
+                            <input type="checkbox" class="checkbox" required="">
+                            <span>I Agree To The Terms & Conditions</span>
+                        </label>
+                        <div class="clear"> </div>
+                    </div>
+                    <input type="submit" value="SIGNUP">
+                }
+                <p>Do you already have an Account? <a href="/Security/Login"> Login Now!</a></p>
+            </div>
+        </div>
+
+
+        <ul class="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- //main -->
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+</body>
+</html>

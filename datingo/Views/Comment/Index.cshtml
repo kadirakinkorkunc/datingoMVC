@@ -1,0 +1,56 @@
+﻿@model IEnumerable<datingo.Models.EntityFramework.commentParent>
+
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<link href="~/Content/profilecss/comment.css" rel="stylesheet" />
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">
+                    <br/>
+                    Reputation Page
+                </h3>
+                <div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                            <h3><strong>Yorum Sahibi:</strong><a href="/Profile/Index/@item.commentOwner" title="">  @item.commentOwner</a></h3>
+                            <p><strong>Yorum:</strong>@item.comment</p>
+                            <p><strong>Yorum Tarihi:</strong>:@item.commentDate</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    @using (Html.BeginForm("Index", "Comment", FormMethod.Post))
+                    {
+                        <div class="panel-body">
+                    <span style="color:orangered;">@TempData["mesaj"]</span>
+                            <textarea type="text" class="form-control" cols="15" name="comment" placeholder="Join the conversation.."></textarea>
+                        </div>
+                        <div class="panel-heading comment-action">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                </div>
+                                <div class="col-xs-12">
+                                    <br>
+                                    <a class="btn btn-lg btn-danger" href="/Profile/Index/@Request.Url.Segments[3]"><i class="glyphicon glyphicon-ok-sign"></i> Go Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

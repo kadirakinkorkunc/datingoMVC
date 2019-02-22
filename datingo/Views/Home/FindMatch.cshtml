@@ -1,0 +1,102 @@
+﻿@using System.Web.Optimization
+@{
+    ViewBag.Title = "FindMatch";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model IEnumerable<datingo.Models.EntityFramework.userAcc>
+
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Content/css")
+</head>
+
+<body>
+    <div class="container" style="position:absolute;left:10%; top:10%;">
+    @using (Html.BeginForm("FindMatch", "Home", FormMethod.Get))
+    {
+        <fieldset >
+            <!-- Form Name -->
+
+            <legend>Find Your MATCH!</legend>
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="location">Name Search</label>
+                <div class="col-md-4">
+                    @Html.TextBox("searchString", null, new { @class = "form-control input-md" })
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="radius">Search by Country</label>
+                <div class="col-md-4">
+                    @Html.DropDownList("location", (IEnumerable<SelectListItem>)ViewBag.location, "None", new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="property_type">Gender</label>
+                <div class="col-md-4">
+                    @Html.DropDownList("cinsiyet", (IEnumerable<SelectListItem>)ViewBag.cinsiyet, "None", new { @class = "form-control" })
+                </div>
+            </div>
+            <!-- Select Basic -->
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-4">
+                    <button id="submit" name="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+
+        </fieldset>
+    }
+    </div>
+
+    @*RESULT PAGE*@
+    <link href="~/Content/searchcss/search.css" rel="stylesheet" />
+    <div class="container" style="position:relative; left:20%; right:2%;top:15%; margin-bottom:37%;"> @*absolute*@
+        <hgroup class="mb20">
+            <h1>Search Results</h1>
+        </hgroup>
+
+        @foreach (var item in Model)
+        {
+
+            <section class="col-xs-12 col-sm-6 col-md-12">
+                <article class="search-result row">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        
+                     <img src="https://i.ibb.co/9bPy1rZ/msn-logo.png" height="100" width="150" alt="Lorem ipsum" />
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <ul class="meta-search">
+                            <li><i class="glyphicon glyphicon-calendar"></i> <span>@(item.userBirthday != null ? item.userBirthday.Value.ToString("dd-MM-yyyy") : "Unknown")</span></li>
+                            <li><i class="glyphicon glyphicon-time"></i> <span>@item.userCountry</span></li>
+                            <li><i class="glyphicon glyphicon-tags"></i> <span>@item.userGender</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                        <h3><a href="/Profile/Index/@item.userName" title="">@item.userAd @item.userSoyad</a></h3>
+                        <p>@item.userMeslek</p>
+                        <p>Eye Color:@item.userEye</p>
+                        <p>Hair Color:@item.userHair</p>
+                        
+                    </div>
+                    <span class="clearfix borda"></span>
+                </article>
+
+            </section>
+
+        }
+    </div>
+    @*RESULT PAGE*@
+
+ 
+</body>
+
